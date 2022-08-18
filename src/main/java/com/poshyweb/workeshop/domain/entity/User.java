@@ -1,31 +1,47 @@
 package com.poshyweb.workeshop.domain.entity;
 
+import com.sun.istack.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-
+@Entity
+@Table(name = "userTable")
 public class User implements Serializable {
     static final long serialVersionUID = 1L;
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column (name = "nome")
+    @NotNull
+    @NotBlank
     private String nome;
+    @Column (name = "email")
+    @NotNull
+    @NotBlank
     private String email;
+    @Column (name = "senha")
+    @NotNull
+    @NotBlank
     private String senha;
 
     public User() {
     }
 
-    public User(String id, String nome, String email, String senha) {
+    public User(Long id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
